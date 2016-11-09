@@ -12,7 +12,7 @@ public class Teletransporte : MonoBehaviour {
 	}
 
 	void OnDrawGizmosSelected(){
-		if (destino != null) {
+		if (destino != null) { // != No es igual a null / ! es negar 
 			Gizmos.color = Color.yellow;
 			Gizmos.DrawLine (transform.position, destino.position);
 		}
