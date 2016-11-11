@@ -2,12 +2,17 @@
 using System.Collections;
 
 public class Moneda : MonoBehaviour {
-	Rigidbody2D rigi;
+	private Rigidbody2D rigi;
+	GameObject txtMoneda;
+	ControlMonedas ctrl_moneda;
+	public int suma;
 	// Use this for initialization
 	void Start () {
 		rigi = GetComponent<Rigidbody2D>();
-		Destroy (gameObject, 3); // sE DESTRUYE A LOS 3 SEGUNDOS
+		Destroy (gameObject, 10); // sE DESTRUYE A LOS 3 SEGUNDOS
 		rigi.AddForce (new Vector2(Random.Range(-100, 100),100));
+		txtMoneda = GameObject.Find ("TextoMoneda"); //busca los objetos en la escena y el del nombre lo mete
+		ctrl_moneda = txtMoneda.GetComponent<ControlMonedas>();
 	}
 	
 	// Update is called once per frame
@@ -17,8 +22,9 @@ public class Moneda : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col){
 		if (col.gameObject.tag == "Player") {
-			Destroy (gameObject, 1); // Se destruye a 1 segundo de tocarla
-			Random.Range(0,10);
+			ctrl_moneda.sumaMonedas (suma);
+			Destroy (gameObject); // Se destruye a 1 segundo de tocarla
+
 		}
 	}
 }
