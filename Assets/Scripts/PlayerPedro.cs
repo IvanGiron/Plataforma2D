@@ -9,12 +9,14 @@ public class PlayerPedro : MonoBehaviour {
 	public bool tocandoSuelo = false;
 	private Animator animator;
 	private Rigidbody2D rb;
+	private gameControlScript gameCS;
 
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator> ();
 		rb = GetComponent<Rigidbody2D> ();
-	}
+		gameCS = GameObject.Find ("GameControl").GetComponent<gameControlScript>();//buscar el objeto que tiene el script y cogemos su script
+		}
 	
 	// Update is called once per frame
 	void Update () {
@@ -65,5 +67,12 @@ public class PlayerPedro : MonoBehaviour {
 		}
 	}
 
+	void OnCollisionEnter2D(Collision2D col){
+		if (col.gameObject.tag == "Muerte") {
+			gameCS.respaw ();
+	}
+
+
+}
 
 }
