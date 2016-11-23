@@ -22,8 +22,9 @@ public class Moneda : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col){
 		if (col.gameObject.tag == "Player") {
+			Destroy (gameObject);
 			ctrl_moneda.sumaMonedas (suma);
-			Destroy (gameObject); // Se destruye a 1 segundo de tocarla
+			 // Se destruye a 1 segundo de tocarla
 
 		}
 	}
