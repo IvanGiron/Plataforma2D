@@ -11,6 +11,7 @@ public class PlayerPedro : MonoBehaviour {
 	private Rigidbody2D rb;
 	private gameControlScript gameCS;
 	public GameObject particulasMuerte;
+	private AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
@@ -70,11 +71,17 @@ public class PlayerPedro : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col){
 		if (col.gameObject.tag == "Muerte") {
-			//gameCS.respaw ();
+			Invoke ("muerte", 1);
+			//audio.PlayOneShot (sonido_herir);
 			Instantiate(particulasMuerte, transform.position, transform.rotation);
+			//gameCS.respaw ();
 	}
-
+	
+	
 
 }
+	void muerte(){
+		gameCS.respaw();
+	}
 
 }
